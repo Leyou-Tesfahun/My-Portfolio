@@ -1,0 +1,396 @@
+/* Custom Variables and Global Styles */
+:root {
+    --primary-color: #007BFF; /* Vibrant Blue */
+    --secondary-color: #17A2B8; /* Soft Teal/Cyan - Used for hover/accent */
+    --contact-cta-color: #28A745; /* New: Green for Contact CTA */
+    --dark-bg: #212529; /* Deep Black */
+    --light-bg: #F8F9FA; /* Very Light Gray */
+    --text-color-light: #F8F9FA;
+    --text-color-dark: #343A40;
+    --body-bg: white;
+    --description-bg-light: #F2F2F2; 
+    --project-page-bg-light: #ECEFF1; /* Soft Blue-Gray for main container */
+    --project-card-light: #FFFFFF; /* Pure White for the card */
+    /* NEW VARIABLE: Distinct Green for Project Description Box in Light Mode */
+    --project-box-green: #E6FFE6; /* Very light green */
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text-color-dark);
+    background-color: var(--body-bg); 
+    transition: background-color 0.3s, color 0.3s; /* Smooth transition for dark mode */
+}
+
+/* --- Dark Mode Styles --- */
+[data-bs-theme="dark"] {
+    --text-color-dark: #F8F9FA;
+    --body-bg: #121212; /* Darker background */
+    --dark-bg: #1E1E1E; /* Even darker elements */
+    --light-bg: #2C2C2C;
+    --primary-color: #4DA6FF; /* Slightly lighter primary for contrast */
+    --secondary-color: #00BCD4; 
+    --yellow-accent: #FFC107; /* Yellow color for Dark Mode accent */
+    --description-bg-dark: #262626;
+    --project-page-bg-dark: #121212; /* Match body bg for main container */
+    --project-card-dark: #1E1E1E; /* Match dark-bg for the card */
+    /* NEW VARIABLE: Distinct Green for Project Description Box in Dark Mode */
+    --project-box-green-dark: #1B3F1D; /* Darker, desaturated green */
+}
+
+[data-bs-theme="dark"] .text-muted {
+    color: #B0B0B0 !important;
+}
+[data-bs-theme="dark"] .navbar {
+    background-color: var(--dark-bg) !important;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* This specific rule targets the btn-outline-dark on the Contact page */
+[data-bs-theme="dark"] .btn-outline-dark, 
+[data-bs-theme="dark"] .btn-outline-secondary { /* Added secondary to cover the change on the contact page */
+    color: var(--text-color-dark) !important;
+    border-color: var(--text-color-dark) !important;
+}
+[data-bs-theme="dark"] .btn-outline-dark:hover,
+[data-bs-theme="dark"] .btn-outline-secondary:hover {
+    background-color: var(--secondary-color) !important;
+    color: black !important;
+}
+
+/* Nav Bar Styling */
+.navbar {
+    transition: background-color 0.3s ease;
+    background-color: var(--dark-bg) !important;
+}
+
+.navbar-brand {
+    font-weight: 700 !important;
+    color: var(--primary-color) !important;
+}
+
+.nav-link {
+    color: var(--text-color-light) !important;
+    transition: color 0.3s, border-bottom 0.3s;
+    border-bottom: 2px solid transparent;
+}
+
+.nav-link:hover {
+    color: var(--secondary-color) !important;
+    border-bottom: 2px solid var(--secondary-color);
+}
+
+.nav-link.active {
+    color: var(--primary-color) !important;
+    font-weight: 600;
+    border-bottom: 2px solid var(--primary-color);
+}
+
+/* 1. MODIFICATION: Active NAV link in Dark Mode is Yellow */
+[data-bs-theme="dark"] .nav-link.active {
+    color: var(--yellow-accent) !important;
+    border-bottom: 2px solid var(--yellow-accent);
+}
+
+/* --- Primary Button Styling (Applied to the 'View Projects' button) --- */
+.btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+    transition: background-color 0.3s, border-color 0.3s, transform 0.2s;
+}
+
+.btn-primary:hover,
+.btn-primary:focus {
+    /* Change to secondary color (Teal) on hover/focus */
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+    box-shadow: 0 4px 10px rgba(23, 162, 184, 0.4); /* Subtle shadow for lift */
+    transform: translateY(-1px); /* Subtle lift effect */
+}
+
+
+/* Specific Nav Bar Button Styling (Ensures consistency for the Contact Me button) */
+.navbar .btn-primary {
+    background-color: var(--primary-color);
+    border-color: var(--primary-color);
+}
+
+.navbar .btn-primary:hover {
+    /* Ensures the Contact Me button in the navbar turns teal on hover */
+    background-color: var(--secondary-color);
+    border-color: var(--secondary-color);
+}
+
+/* NEW: Contact Me Button Styling (Green CTA) */
+.btn-contact-cta {
+    background-color: var(--contact-cta-color);
+    border-color: var(--contact-cta-color);
+    font-weight: 600 !important;
+    color: white !important; /* Ensure text is white */
+}
+.btn-contact-cta:hover,
+.btn-contact-cta:focus {
+    /* Using direct color change for pure CSS: */
+    background-color: #218838; 
+    border-color: #1e7e34;
+    box-shadow: 0 6px 15px rgba(40, 167, 69, 0.3) !important;
+}
+
+
+/* Home Section Styling (Hero) */
+#home {
+    background: linear-gradient(135deg, var(--light-bg) 0%, #E9ECEF 100%);
+    position: relative;
+    padding-top: 100px; /* Space for fixed navbar */
+    background-color: var(--body-bg); /* Ensure theme color is respected */
+}
+[data-bs-theme="dark"] #home {
+    background: linear-gradient(135deg, var(--dark-bg) 0%, #171717 100%);
+}
+
+#home h1 .text-primary {
+    color: var(--primary-color) !important;
+}
+
+/* Profile Image Styling (Crucial Update) */
+.profile-img-container {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    overflow: hidden;
+    margin: 0 auto 2rem;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2), 0 0 0 8px var(--primary-color); /* Double border effect */
+    transition: transform 0.5s ease-in-out;
+}
+
+.profile-img-container:hover {
+    transform: scale(1.05) rotate(3deg);
+    box-shadow: 0 15px 45px rgba(0, 0, 0, 0.3), 0 0 0 8px var(--secondary-color);
+}
+
+.profile-img-container img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: grayscale(0.5); /* Subtle effect */
+    transition: filter 0.5s;
+}
+
+.profile-img-container img:hover {
+    filter: grayscale(0); /* Full color on hover */
+}
+
+/* Project Section Styling */
+/* TARGETING THE MAIN CONTAINER OF THE PROJECTS PAGE */
+main.container {
+    background-color: var(--project-page-bg-light); /* Apply distinct light color */
+}
+[data-bs-theme="dark"] main.container {
+    background-color: var(--project-page-bg-dark); /* Apply dark mode color */
+}
+
+
+#projects-preview, #projects { 
+    /* Removed redundant background-color properties here, main.container now handles it */
+    color: var(--text-color-light);
+}
+
+.project-card {
+    background-color: var(--project-card-light); /* Use new light mode variable (White) */
+    border: none;
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    cursor: pointer;
+    margin-bottom: 10px; /* Added for consistency */
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05); /* Added subtle shadow in light mode */
+}
+[data-bs-theme="dark"] .project-card {
+    background-color: var(--project-card-dark); /* Use new dark mode variable (Dark Gray) */
+}
+
+.project-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.5); /* Stronger shadow on hover */
+}
+
+/* *** MODIFIED STYLES for Description Box to use GREEN *** */
+.project-description-box {
+    background-color: var(--project-box-green); /* Apply the new light green color */
+    padding: 1rem;
+    margin: 1rem -1rem -1rem; /* Pull into card padding area and create margin for distinction */
+    border-radius: 0 0 10px 10px;
+    border-top: 1px solid rgba(0, 0, 0, 0.1);
+}
+[data-bs-theme="dark"] .project-description-box {
+    background-color: var(--project-box-green-dark); /* Apply the new dark green color */
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+/* Ensure text in the box looks right in light mode */
+.project-description-box .card-text {
+    color: var(--text-color-dark); /* Ensure black text in light mode */
+}
+/* Ensure text in the box looks right in dark mode */
+[data-bs-theme="dark"] .project-description-box .card-text {
+    color: var(--text-color-dark) !important; /* Ensure white text in dark mode */
+}
+
+
+/* New: Enforce Consistent Image Aspect Ratio for Responsiveness */
+.project-img-fit {
+    width: 100%;
+    /* Fixed height for consistent card alignment (approx 16:9 ratio in Bootstrap columns) */
+    height: 180px; 
+    object-fit: cover; /* Fills the space, cropping portrait images neatly top/bottom */
+    border-bottom: 3px solid var(--secondary-color);
+    transition: transform 0.3s ease;
+}
+
+/* Optional: Slight zoom effect on image hover */
+.project-card:hover .project-img-fit {
+    transform: scale(1.03);
+}
+
+.project-card-title {
+    color: var(--primary-color);
+    font-weight: 600;
+}
+
+/* 2. MODIFICATION: Project Card Title is Yellow in Dark Mode */
+[data-bs-theme="dark"] .project-card-title {
+    color: var(--yellow-accent);
+}
+
+/* New: Badge styling */
+.badge {
+    padding: 0.5em 0.8em;
+    font-weight: 500;
+    font-size: 0.75rem;
+    letter-spacing: 0.05em;
+    border-radius: 3px;
+}
+
+/* About Section Styling */
+#story p {
+    line-height: 1.8;
+}
+
+#skills .p-4 {
+    border: 1px solid #DEE2E6;
+    transition: box-shadow 0.3s;
+}
+[data-bs-theme="dark"] #skills .p-4 {
+    border-color: #444 !important;
+}
+
+#skills .p-4:hover {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1) !important;
+}
+
+/* Contact Section Styles - NEW ADDITIONS BELOW */
+#contact {
+    /* Ensures background responds to dark mode variable */
+    background-color: var(--light-bg) !important;
+}
+
+/* Style for the main contact form background */
+.contact-form-bg {
+    background-color: white !important; /* Light mode default */
+    border: 1px solid #e9ecef;
+}
+[data-bs-theme="dark"] .contact-form-bg {
+    background-color: var(--dark-bg) !important; /* Dark mode card color */
+    border-color: #333;
+}
+
+/* Style for the contact links (email/phone numbers) */
+.contact-link-color {
+    color: var(--text-color-dark) !important; /* Inherits black/white */
+}
+
+/* Ensure form controls look good in dark mode */
+[data-bs-theme="dark"] .form-control,
+[data-bs-theme="dark"] .form-select {
+    background-color: var(--light-bg); /* Use slightly lighter background for inputs */
+    color: var(--text-color-dark);
+    border-color: #555;
+}
+[data-bs-theme="dark"] .form-control::placeholder {
+    color: #999;
+}
+[data-bs-theme="dark"] .form-control:focus,
+[data-bs-theme="dark"] .form-select:focus {
+    background-color: var(--light-bg);
+    /* Focus border and shadow use the yellow accent color */
+    border-color: var(--yellow-accent);
+    box-shadow: 0 0 0 0.25rem rgba(255, 193, 7, 0.25);
+}
+
+
+/* Contact Form Styling - Original rules retained and integrated */
+.form-control:focus, .form-select:focus {
+    border-color: var(--primary-color);
+    box-shadow: 0 0 0 0.25rem rgba(0, 123, 255, 0.25);
+}
+
+/* Footer Styling */
+footer {
+    background-color: var(--dark-bg) !important;
+}
+
+/* =================================================== */
+/* --- NEW STYLES ADDED FOR ABOUT.HTML (Background, Headers, Certificates) --- */
+/* =================================================== */
+
+.about-main-bg {
+    /* Use a dark background color for the main content area in light mode 
+       to ensure the text-white headers are visible (About Me & My Journey, My Digital Credentials, My Core Skills). */
+    background-color: var(--dark-bg); 
+    border-radius: 10px;
+    padding: 2rem 1rem !important; /* Add extra padding */
+}
+
+/* Ensure the dark mode background matches the dark body background */
+[data-bs-theme="dark"] .about-main-bg {
+    background-color: var(--body-bg);
+}
+
+/* Ensure the descriptive text below the main white headers is visible in light mode */
+.about-main-bg .lead.text-muted {
+    color: #CED4DA !important; /* Lighter grey for contrast against dark-bg */
+}
+
+/* Ensure the separators are visible */
+.about-main-bg hr {
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Certificate Card Styling */
+.certificate-card {
+    border: 1px solid #DEE2E6; /* Light border in light mode */
+    background-color: white !important;
+    transition: box-shadow 0.3s, transform 0.2s;
+}
+
+.certificate-card:hover {
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-2px);
+}
+
+[data-bs-theme="dark"] .certificate-card {
+    background-color: var(--dark-bg) !important;
+    border-color: #333;
+}
+[data-bs-theme="dark"] .certificate-card .card-title {
+    color: var(--text-color-dark) !important; /* White title text */
+}
+
+/* Ensure existing skills section adapts for dark mode */
+[data-bs-theme="dark"] #skills .p-4 {
+    background-color: var(--dark-bg) !important;
+    border-color: #444 !important;
+}
+
+/* Adjust Skill Card Backgrounds for Light Mode */
+[data-bs-theme="light"] #skills .p-4 {
+    background-color: white !important; /* Keep skill cards white in light mode */
+}
