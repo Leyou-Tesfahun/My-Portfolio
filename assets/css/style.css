@@ -343,7 +343,7 @@ footer {
 
 .about-main-bg {
     /* Use a dark background color for the main content area in light mode 
-       to ensure the text-white headers are visible (About Me & My Journey, My Digital Credentials, My Core Skills). */
+        to ensure the text-white headers are visible (About Me & My Journey, My Digital Credentials, My Core Skills). */
     background-color: var(--dark-bg); 
     border-radius: 10px;
     padding: 2rem 1rem !important; /* Add extra padding */
@@ -393,4 +393,27 @@ footer {
 /* Adjust Skill Card Backgrounds for Light Mode */
 [data-bs-theme="light"] #skills .p-4 {
     background-color: white !important; /* Keep skill cards white in light mode */
+}
+
+/* =================================================== */
+/* --- LIGHT MODE TEXT OVERRIDES FOR ABOUT.HTML CONTENT --- */
+/* (Ensures dark text when the main theme is light, overriding .text-white/lead.text-muted) */
+/* =================================================== */
+
+/* 1. Target H1 and H2 elements inside the 'about-main-bg' when the theme is LIGHT */
+[data-bs-theme="light"] .about-main-bg h1,
+[data-bs-theme="light"] .about-main-bg h2 {
+    color: var(--text-color-dark) !important; /* Forces text to black/dark gray */
+}
+
+/* 2. Target the descriptive lead text inside 'about-main-bg' when the theme is LIGHT */
+[data-bs-theme="light"] .about-main-bg .lead.text-muted {
+    /* Override the light gray color defined previously for the dark background */
+    color: var(--text-color-dark) !important; /* Forces text to black/dark gray */
+}
+
+/* 3. Ensure the text inside the specific sections (like the skill/certificate descriptions) remains dark in light mode */
+[data-bs-theme="light"] .certificate-card .card-text,
+[data-bs-theme="light"] #skills p.text-muted {
+    color: var(--text-color-dark) !important;
 }
